@@ -6,11 +6,11 @@
   "plugins": [
     "@nx"
   ],
+  "extends": [
+    "prettier"
+  ],
   "overrides": [
     {
-      "extends": [
-        "prettier"
-      ],
       "files": [
         "*.ts",
         "*.tsx",
@@ -18,9 +18,6 @@
         "*.jsx"
       ],
       "rules": {
-        "prettier/prettier": [
-          "error"
-        ],
         "@nx/enforce-module-boundaries": [
           "error",
           {

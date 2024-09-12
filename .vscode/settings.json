@@ -8,8 +8,9 @@
     "typescriptreact"
   ],
   "eslint.useFlatConfig": false,
-  "eslint.debug": true,
   "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {},
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  "typescript.tsdk": "node_modules\\typescript\\lib",
 }
