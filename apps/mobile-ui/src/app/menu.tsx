@@ -3,10 +3,10 @@ import { IonList, IonItem, IonLabel } from '@ionic/react';
 export default function SidebarMenu() {
   return (
     <IonList>
-      <IonItem button>
+      <IonItem button routerLink="/home">
         <IonLabel>Sampahku</IonLabel>
       </IonItem>
-      <IonItem button>
+      <IonItem button routerLink="/news">
         <IonLabel>Berita Terkini</IonLabel>
       </IonItem>
       <IonItem button>
