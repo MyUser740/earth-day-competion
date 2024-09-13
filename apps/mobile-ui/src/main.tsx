@@ -2,6 +2,8 @@ import { setupIonicReact } from '@ionic/react';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import 'jquery';
+import 'owl.carousel';
 
 import './styles.scss';
 
