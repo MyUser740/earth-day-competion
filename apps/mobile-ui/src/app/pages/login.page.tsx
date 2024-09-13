@@ -8,6 +8,7 @@ import {
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 import { motion } from 'framer-motion';
+// import { WifiLoader } from "react-awesome-loaders";
 
 import style from './login.module.scss';
 
