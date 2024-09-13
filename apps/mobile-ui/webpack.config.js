@@ -1,6 +1,7 @@
 const { NxAppWebpackPlugin } = require('@nx/webpack/app-plugin');
 const { NxReactWebpackPlugin } = require('@nx/react/webpack-plugin');
 const { join } = require('path');
+const { ProvidePlugin } = require('webpack');
 
 module.exports = {
   output: {
@@ -27,5 +28,10 @@ module.exports = {
       // See: https://react-svgr.com/
       // svgr: false
     }),
+    new ProvidePlugin({
+      '$': 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
+    })
   ],
 };
