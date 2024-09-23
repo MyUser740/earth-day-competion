@@ -1,4 +1,4 @@
-import { IonList, IonItem, IonLabel } from '@ionic/react';
+import { IonItem, IonLabel, IonList } from '@ionic/react';
 
 export default function SidebarMenu() {
   return (

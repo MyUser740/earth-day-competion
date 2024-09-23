@@ -1,30 +1,31 @@
 import {
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonMenuButton,
-  IonTitle,
-  IonToolbar,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardSubtitle,
-  IonCardContent,
   IonButton,
-  IonModal,
+  IonButtons,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonHeader,
+  IonItem,
+  IonLabel,
   IonList,
   IonListHeader,
-  IonLabel,
-  IonItem,
-  IonGrid,
-  IonCol,
+  IonMenuButton,
+  IonModal,
+  IonPage,
   IonRow,
+  IonTitle,
+  IonToolbar,
 } from '@ionic/react';
 import { useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 
-import trashImg from '../../assets/graphics/trash.jpg';
 import CO2Img from '../../assets/graphics/CO2_gas.jpeg';
+import trashImg from '../../assets/graphics/trash.jpg';
 import moneyImg from '../../assets/graphics/trashdump.webp';
 
 export default function DashboardPage() {
@@ -34,7 +35,7 @@ export default function DashboardPage() {
   const [showFineTrash, setShowFineTrash] = useState(false);
 
   return (
-    <>
+    <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
@@ -262,6 +263,6 @@ export default function DashboardPage() {
           </p>
         </IonContent>
       </IonModal>
-    </>
+    </IonPage>
   );
 }

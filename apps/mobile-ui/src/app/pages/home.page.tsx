@@ -1,22 +1,23 @@
 import {
+  IonButton,
   IonButtons,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
   IonContent,
   IonHeader,
   IonMenuButton,
+  IonPage,
   IonTitle,
   IonToolbar,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardSubtitle,
-  IonCardContent,
-  IonButton,
 } from '@ionic/react';
 import { Link } from 'react-router-dom';
 
 export default function HomePage() {
   return (
-    <>
+    <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
@@ -62,6 +63,6 @@ export default function HomePage() {
           </IonButton>
         </IonCard>
       </IonContent>
-    </>
+    </IonPage>
   );
 }

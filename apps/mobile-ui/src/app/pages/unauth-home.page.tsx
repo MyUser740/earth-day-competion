@@ -1,10 +1,10 @@
-import { IonContent, IonButton } from '@ionic/react';
+import { IonButton, IonContent, IonPage } from '@ionic/react';
 
 import style from './unauth-home.module.scss';
 
 export default function UnAuthHomePage() {
   return (
-    <>
+    <IonPage>
       {/* <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
@@ -42,7 +42,7 @@ export default function UnAuthHomePage() {
         </section>
         <div className={style['welcome-msg']}>
           <h1>Aplikasi Manajemen Sampah</h1>
-          <p>Satu aplikasi untuk mengurangi penumpukan sampah</p>
+          <p>Mari kita kurangi sampah!</p>
         </div>
         <div className={style['login-btn']}>
           <IonButton expand="block" color="secondary" routerLink="/login">
@@ -50,6 +50,6 @@ export default function UnAuthHomePage() {
           </IonButton>
         </div>
       </IonContent>
-    </>
+    </IonPage>
   );
 }
