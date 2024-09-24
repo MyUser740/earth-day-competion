@@ -3,5 +3,6 @@ import { LlmServiceService } from './llm-service.service';
 
 @Module({
   providers: [LlmServiceService],
+  exports: [LlmServiceService],
 })
-export class LlmServiceModule {}
+export class LlmServiceModule { }
