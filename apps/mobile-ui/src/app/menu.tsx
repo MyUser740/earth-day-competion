@@ -12,7 +12,7 @@ export default function SidebarMenu() {
       <IonItem button>
         <IonLabel>Pengaturan</IonLabel>
       </IonItem>
-      <IonItem button>
+      <IonItem button routerLink="/help">
         <IonLabel>Bantuan</IonLabel>
       </IonItem>
     </IonList>
