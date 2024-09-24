@@ -15,6 +15,12 @@ module.exports = {
     historyApiFallback: true,
     // hot: true,
   },
+  resolve: {
+    fallback: {
+      console: require.resolve('console-browserify'),
+      assert: require.resolve('assert'),
+    },
+  },
   plugins: [
     new NxAppWebpackPlugin({
       tsConfig: './tsconfig.app.json',
