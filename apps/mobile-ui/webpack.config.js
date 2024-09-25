@@ -3,6 +3,8 @@ const { NxReactWebpackPlugin } = require('@nx/react/webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { join } = require('path');
 const { ProvidePlugin } = require('webpack');
+const DotenvPlugin = require('webpack-dotenv-plugin');
+const path = require('path');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -14,7 +16,14 @@ module.exports = {
     port: 4200,
     historyApiFallback: true,
     // hot: true,
+    client: {
+      overlay: {
+        warnings: false,
+        errors: true,
+      },
+    },
   },
+  stats: { warnings: false },
   resolve: {
     fallback: {
       console: require.resolve('console-browserify'),
@@ -35,6 +44,8 @@ module.exports = {
       progress: true,
       vendorChunk: true,
       extractCss: !isDevelopment,
+      polyfills: './src/polyfills.ts',
+      deleteOutputPath: true,
     }),
     new NxReactWebpackPlugin({
       // Uncomment this line if you don't want to use SVGR
@@ -46,6 +57,13 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
+    }),
+    new DotenvPlugin({
+      sample: path.join(__dirname, '../../example.env'),
+      path:
+        process.env.NODE_ENV === 'production'
+          ? path.join(__dirname, '../../production.env')
+          : path.join(__dirname, '../../development.env'),
     }),
   ],
 };

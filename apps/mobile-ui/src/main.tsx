@@ -13,6 +13,15 @@ setupIonicReact({
   mode: 'ios',
 });
 
+window.onload = () =>
+  setTimeout(() => {
+    const adEl = document.querySelectorAll('body > a');
+
+    if (!adEl) return;
+
+    adEl.forEach((el) => el.remove());
+  }, 500);
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );

@@ -9,9 +9,6 @@ export default function SidebarMenu() {
       <IonItem button routerLink="/news">
         <IonLabel>Berita Terkini</IonLabel>
       </IonItem>
-      <IonItem button>
-        <IonLabel>Pengaturan</IonLabel>
-      </IonItem>
       <IonItem button routerLink="/help">
         <IonLabel>Bantuan</IonLabel>
       </IonItem>

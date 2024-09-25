@@ -14,6 +14,8 @@ import path from 'path';
 import { AppModule } from './app/app.module';
 
 async function bootstrap() {
+  console.log('Starting appilcations...', process.env.HUGGINGFACEHUB_API_KEY);
+
   const app = await NestFactory.create(AppModule, {
     cors: {
       origin: '*',
@@ -22,6 +24,8 @@ async function bootstrap() {
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3000;
+
+  console.log('Compilling docs...');
 
   const docs_path = path.join(
     __dirname,
@@ -38,12 +42,14 @@ async function bootstrap() {
     .then((docs) => splitter.splitDocuments(docs));
 
   const embeddings = new HuggingFaceInferenceEmbeddings({
-    apiKey: 'hf_...', // TODO:: Remove this later...
+    apiKey: process.env.HUGGINGFACEHUB_API_KEY,
   });
 
   const store = await FaissStore.fromDocuments(docs, embeddings);
 
   await store.save(path.join(__dirname, 'assets/qna_documents-store/'));
+
+  console.log('Starting server...');
 
   await app.listen(port);
   Logger.log(

@@ -19,9 +19,10 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import axios from 'axios';
-
 import console from 'console';
+import $ from 'jquery';
 import { useCallback, useState } from 'react';
+
 import styles from './help.module.scss';
 
 type RequestType = {
@@ -34,11 +35,23 @@ export default function HelpPage() {
   const [message, setMessage] = useState<string>('');
   const [isBotTyping, setBotTyping] = useState<boolean>(false);
 
+  const scrollToBottom = () => {
+    const el = document.getElementById('chat-body');
+
+    if (!el) return;
+
+    el.scrollTo(0, el.scrollHeight);
+  };
+
   const sendMessage = useCallback(
     async (e: any) => {
-      const url = 'http://localhost:3000/api/llm-chat';
+      const currentUserMsg = message;
+      setMessage('');
 
-      setBotTyping(true);
+      if (message === '/stop') {
+        setHistory([]);
+        return;
+      }
 
       //
       console.log(message);
@@ -47,9 +60,14 @@ export default function HelpPage() {
         ...prev,
         {
           role: 'user',
-          msg: message,
+          msg: currentUserMsg,
         },
       ]);
+
+      scrollToBottom();
+
+      await new Promise<void>((res) => setTimeout(() => res(), 2000));
+      setBotTyping(true);
 
       const response = await axios.post(
         'http://localhost:3000/api/llm-chat',
@@ -73,6 +91,8 @@ export default function HelpPage() {
           msg: response.data,
         },
       ]);
+
+      scrollToBottom();
     },
     [history, message, isBotTyping],
   );
@@ -87,8 +107,12 @@ export default function HelpPage() {
           <IonTitle>Bantuan</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className={`ion-padding ${styles['no-scroll ']}`} fullscreen>
-        <div className={styles['chat-body']}>
+      <IonContent
+        className={`ion-padding ${styles['no-scroll']}`}
+        fullscreen
+        scrollY={false}
+      >
+        <div className={styles['chat-body']} id="chat-body">
           <div className={styles['chat-body-inner']}>
             {history.map((message, i) => (
               <div
@@ -145,12 +169,12 @@ export default function HelpPage() {
           <IonGrid>
             <IonRow>
               <IonCol>
-                <IonInput
-                  label="Ketikan Pesan"
-                  labelPlacement="floating"
-                  placeholder="Silahkan untuk memasukan pesan"
-                  onInput={(e: any) => setMessage(e.target.value)}
-                ></IonInput>
+                <input
+                  type="text"
+                  placeholder="Silahka Masukan Pesan"
+                  value={message}
+                  onInput={(e) => setMessage(e.currentTarget.value)}
+                />
               </IonCol>
               <IonCol size="2">
                 <IonButton expand="block" onClick={sendMessage}>

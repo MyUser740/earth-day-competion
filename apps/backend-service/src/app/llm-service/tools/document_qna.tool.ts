@@ -18,7 +18,7 @@ const documentQNA = createTools(
     const loadedStore = await FaissStore.load(
       path.join(__dirname, 'assets/qna_documents-store/'),
       new HuggingFaceInferenceEmbeddings({
-        apiKey: 'hf_...', // TODO: Remove this
+        apiKey: process.env.HUGGINGFACEHUB_API_KEY,
       }),
     );
 
